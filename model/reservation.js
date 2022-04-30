@@ -11,7 +11,7 @@ const reservation = Joi.object({
     .min(3)
     .max(30)
     .required(),
-  check_in: Joi.date().required(),
+  check_in: Joi.date().greater('now').required(),
   check_out: Joi.date().greater(Joi.ref('check_in')).required(),
   number_people: Joi.number().integer().min(1).max(3).required(),
   email: Joi.string()
