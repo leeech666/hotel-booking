@@ -253,7 +253,7 @@ describe('check stay period', () => {
     })
     expect(aa.error).toBeDefined()
   })
-  it('the days more than 3', async () => {
+  it('stay period more than 3 days', async () => {
     let aa
     await isValid(
       {
@@ -267,7 +267,7 @@ describe('check stay period', () => {
       reservations
     ).then((data) => {
       aa = data
-      console.log(aa)
+      //console.log(aa)
     })
     expect(aa.error).toMatch(errorMessage.incorrectdays)
   })
