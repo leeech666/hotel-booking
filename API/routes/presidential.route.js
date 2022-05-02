@@ -7,9 +7,8 @@ const {
   deleteReservation,
 } = require('../controllers/presidential.controller')
 
-let reservations = [{ id: 123456 }]
 router.get('/', (req, res) => {
-  res.json('Welcome to Book Your Favorate Presidential Suite!')
+  res.json('Welcome to Book the Presidential Suite!')
 })
 
 router.post('/', postReservation)

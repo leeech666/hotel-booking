@@ -13,18 +13,16 @@ describe('validate user input', () => {
         expect(data.error).toMatch('first_name')
       })
     })
-    it('first name length less than 3 ', async () => {
+    it('first name length less than 1 ', async () => {
       let aa
-      await isValid({ first_name: 'a2' }).then((data) => {
+      await isValid({ first_name: '' }).then((data) => {
         aa = data
-        //console.log(aa)
       })
       expect(aa.error).toMatch('first_name')
     })
     it('first name normal ', async () => {
       let aa
       await isValid({ first_name: 'a2jk' }).then((data) => {
-        //console.log(aa)
         aa = data
       })
       expect(aa.error).not.toMatch('first_name')
@@ -41,9 +39,9 @@ describe('validate user input', () => {
         expect(data.error).toMatch('last_name')
       })
     })
-    it('last name length less than 3 ', async () => {
+    it('last name length less than 1 ', async () => {
       let aa
-      await isValid({ first_name: 'a2kl', last_name: 'a2' }).then((data) => {
+      await isValid({ first_name: 'a2kl', last_name: '' }).then((data) => {
         aa = data
       })
       expect(aa.error).toMatch('last_name')
@@ -60,7 +58,7 @@ describe('validate user input', () => {
       }).then((data) => {
         aa = data
       })
-      //expect(aa.error).not.toBeDefined()
+
       if (aa.error) expect(aa.error).not.toMatch('last_name')
     })
   })
@@ -76,7 +74,6 @@ describe('validate user input', () => {
         aa = data
       })
       expect(aa.error).toMatch('check_in')
-      //expect(aa.error).not.toMatch('check_out')
     })
     it('check in date should greater than now ', async () => {
       let aa
@@ -89,7 +86,6 @@ describe('validate user input', () => {
         aa = data
       })
       expect(aa.error).toMatch('check_in')
-      //expect(aa.error).not.toMatch('check_out')
     })
     it('check out date format wrong ', async () => {
       let aa
@@ -215,7 +211,6 @@ describe('check stay period', () => {
     let aa
     await isValid(q, reservations).then((data) => {
       aa = data
-      //console.log(aa)
     })
     expect(aa.error).toBeDefined()
   })
@@ -232,7 +227,6 @@ describe('check stay period', () => {
     let aa
     await isValid(q, reservations).then((data) => {
       aa = data
-      //console.log(aa)
     })
     expect(aa.error).toBeDefined()
   })
@@ -249,7 +243,6 @@ describe('check stay period', () => {
     let aa
     await isValid(q, reservations).then((data) => {
       aa = data
-      //console.log(aa)
     })
     expect(aa.error).toBeDefined()
   })
@@ -267,7 +260,6 @@ describe('check stay period', () => {
       reservations
     ).then((data) => {
       aa = data
-      //console.log(aa)
     })
     expect(aa.error).toMatch(errorMessage.incorrectdays)
   })

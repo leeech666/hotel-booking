@@ -4,19 +4,21 @@ const { errorHandler } = require('../error-handling/errorHandler')
 const { errorMessage } = require('../config')
 const isValid = async (q, reservations) => {
   try {
+    //validate user input
     let aa = await reservation.validate(q)
     if (aa.error) {
-      //errorHandler(aa.error)
       return { error: aa.error.message }
     }
 
+    //validate if the date is already taken
     for (let item of reservations) {
       if (
         new Date(item.check_in).getTime() <= new Date(q.check_in).getTime() &&
         new Date(q.check_in).getTime() <= new Date(item.check_out).getTime()
       ) {
         return {
-          error: 'alreday booked!please change your stay period,thank you!',
+          error: 'one or more days already taken!',
+          code: 409,
         }
       }
       if (
@@ -24,11 +26,13 @@ const isValid = async (q, reservations) => {
         new Date(q.check_out).getTime() <= new Date(item.check_out).getTime()
       ) {
         return {
-          error: 'alreday booked!please change your stay period,thank you!',
+          error: 'one or more days already taken!',
+          code: 409,
         }
       }
     }
 
+    //validate how many days
     let days =
       (new Date(q.check_out).getTime() - new Date(q.check_in).getTime()) /
       1000 /

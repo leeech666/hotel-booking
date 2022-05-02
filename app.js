@@ -16,10 +16,7 @@ app.use((err, req, res, next) => {
   }
   //next()
 })
-app.use((req, res, next) => {
-  console.log('Time: ', Date(Date.now()))
-  next()
-})
+
 app.use('/', rootRouter)
 
 module.exports = app

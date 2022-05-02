@@ -4,11 +4,11 @@ const clientID = Joi.string().alphanum().min(6).max(30)
 
 const reservation = Joi.object({
   id: Joi.string().alphanum().min(1).max(30),
-  first_name: Joi.string().alphanum().min(3).max(30).required(),
+  first_name: Joi.string().alphanum().min(1).max(30).required(),
   last_name: Joi.string()
     //.pattern(new RegExp('^[a-zA-Z]{3,30}$'))
     .alphanum()
-    .min(3)
+    .min(1)
     .max(30)
     .required(),
   check_in: Joi.date().greater('now').required(),
